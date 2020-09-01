@@ -1,0 +1,8 @@
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\bin\Debug\netcoreapp3.1\SmartGrid.Datos.deps.json
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\bin\Debug\netcoreapp3.1\SmartGrid.Datos.dll
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\bin\Debug\netcoreapp3.1\SmartGrid.Datos.pdb
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\obj\Debug\netcoreapp3.1\SmartGrid.Datos.AssemblyInfoInputs.cache
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\obj\Debug\netcoreapp3.1\SmartGrid.Datos.AssemblyInfo.cs
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\obj\Debug\netcoreapp3.1\SmartGrid.Datos.dll
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\obj\Debug\netcoreapp3.1\SmartGrid.Datos.pdb
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.Datos\obj\Debug\netcoreapp3.1\SmartGrid.Datos.csprojAssemblyReference.cache

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartGrid.API", "SmartGrid.API\SmartGrid.API.csproj", "{D7D24326-43A1-4E46-A957-BF657DBF635E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{3F98EA5D-2794-43C7-B803-D982D8E67A9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartGrid.Datos", "..\SmartGrid.Datos\SmartGrid.Datos.csproj", "{5DE4760B-F813-4FF4-AF13-954180E239E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartGrid.Datos.Base", "..\SmartGrid.Datos.Base\SmartGrid.Datos.Base.csproj", "{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datos", "Datos", "{A7351B66-EDDF-412D-87A1-62897EF12E62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A5971DDD-564D-4F1A-941A-D1F3E7CEB1A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartGrid.Web", "..\SmartGrid.Web\SmartGrid.Web.csproj", "{06FD9215-D863-4ECA-A8D6-14A1CBE76151}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7D24326-43A1-4E46-A957-BF657DBF635E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D24326-43A1-4E46-A957-BF657DBF635E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D24326-43A1-4E46-A957-BF657DBF635E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D24326-43A1-4E46-A957-BF657DBF635E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE4760B-F813-4FF4-AF13-954180E239E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE4760B-F813-4FF4-AF13-954180E239E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE4760B-F813-4FF4-AF13-954180E239E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE4760B-F813-4FF4-AF13-954180E239E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06FD9215-D863-4ECA-A8D6-14A1CBE76151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06FD9215-D863-4ECA-A8D6-14A1CBE76151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06FD9215-D863-4ECA-A8D6-14A1CBE76151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06FD9215-D863-4ECA-A8D6-14A1CBE76151}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7D24326-43A1-4E46-A957-BF657DBF635E} = {3F98EA5D-2794-43C7-B803-D982D8E67A9B}
+		{5DE4760B-F813-4FF4-AF13-954180E239E9} = {A7351B66-EDDF-412D-87A1-62897EF12E62}
+		{0EFF2D87-4228-4B97-858E-8A29A0A3C0A6} = {A7351B66-EDDF-412D-87A1-62897EF12E62}
+		{06FD9215-D863-4ECA-A8D6-14A1CBE76151} = {A5971DDD-564D-4F1A-941A-D1F3E7CEB1A4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFEDAD8B-BEAD-4CF1-8B21-0C9EE84448BF}
+	EndGlobalSection
+EndGlobal
