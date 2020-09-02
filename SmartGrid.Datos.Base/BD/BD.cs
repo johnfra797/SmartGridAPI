@@ -6,7 +6,12 @@ using System.Text;
 
 namespace SmartGrid.Datos.Base
 {
-
+    ///<summary>
+    ///Clase BD para almacenar datos en memoria
+    ///</summary>
+    ///<remarks>
+    ///Se usa concurrentDictionary para simular la búsqueda por Key.
+    ///</remarks>
     public static class BD
     {
         public static ConcurrentDictionary<int, Person> BDPerson = new ConcurrentDictionary<int, Person>();

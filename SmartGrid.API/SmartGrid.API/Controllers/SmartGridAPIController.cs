@@ -12,6 +12,13 @@ using SmartGrid.Datos.DTO;
 
 namespace SmartGrid.API.Controllers
 {
+    ///<summary>
+    ///Controlador SmartGridAPIController
+    ///</summary>
+    ///<remarks>
+    ///Se usa como punto de entrada al API implementado las clases de servicio de cada objeto (person y personType)
+    ///Tambien se implementa la interface de ILogger para poder guardar logs de ser necesario.
+    ///</remarks>
     [Route("api/[controller]")]
     [ApiController]
     public class SmartGridAPIController : ControllerBase

@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace SmartGrid.API.Servicios.Implementaciones
 {
+    ///<summary>
+    ///Clase ServicePersonTypes
+    ///</summary>
+    ///<remarks>
+    ///Se usa como servicio individual para la logica de interacción con el objeto PersonType
+    ///</remarks>
     public class ServicePersonTypes : IServicePersonType
     {
         private IPersonTypesRepositorio _PersonTypesRepositorio;

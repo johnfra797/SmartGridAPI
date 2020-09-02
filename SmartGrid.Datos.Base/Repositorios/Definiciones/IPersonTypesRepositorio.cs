@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SmartGrid.Datos.Base.Repositorios.Definiciones
 {
+    
     public interface IPersonTypesRepositorio : IRepositorio<PersonType>
     {
     }

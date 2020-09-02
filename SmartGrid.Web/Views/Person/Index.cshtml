@@ -82,6 +82,7 @@
 
 
     @Html.Partial("ModalPerson")
+    @Html.Partial("ModalGraph")
     <!-- /Row -->
 </div>
 
@@ -98,15 +99,20 @@
         $("#modalPerson").modal();
     }
 
+    function modalGraph(name,age,description) {
+        cleanFields();
+        $("#descriptionChart").text(`Graphic about ${name} age:${age} role:${description}`);
+        $("#graph").show();
+        loadChart(name);
+        $("#modalGraph").modal();
+    }
+
     function editPerson(id, name, age, type) {
         $("#CodPersonType").val(type);
         loadPersonType();
         $("#Age").val(age);
         $("#name").val(name);
         $("#CodPerson").val(id);
-        $("#descriptionChart").text(`Graphic about ${name}`);
-        $("#graph").show();
-        loadChart(name);
         $('#modalPerson').modal();
     }
 
@@ -114,7 +120,7 @@
         let arr = []
         for (var i = 0; i < 15; i++) {
             let date = randomDate(new Date(2012, 0, 1), new Date());
-            console.log(date);
+          
             arr.push([date.toString(), Math.ceil(Math.random() * i)]);
         }
         return arr;
@@ -176,6 +182,7 @@
             }]
         });
     }
+
     function cleanFields() {
         $("#CodPersonType").val('');
         $("#Age").val('');
@@ -287,7 +294,12 @@
 
                     promise.then(function (result) {
                         columnsNames.push(result.description);
-                        columnsNames.push(`<button type="button" class="btn btn-primary btn-sm" id="edit" onclick="editPerson('${text.id}','${text.name}','${text.age}','${text.type}');">Edit</button> <br><button type="button" class="btn btn-danger btn-sm" id="delete" onclick="deletePerson('${text.id}');">Delete</button>`);
+
+                        if (result.id == 1) {
+                            columnsNames.push(`<button type="button" class="btn btn-primary btn-sm" id="edit" onclick="editPerson('${text.id}','${text.name}','${text.age}','${text.type}');">Edit</button> <br><button type="button" class="btn btn-danger btn-sm" id="delete" onclick="deletePerson('${text.id}');">Delete</button><br><button type="button" class="btn btn-success btn-sm" id="graph" onclick="modalGraph('${text.name}','${text.age}','${result.description}');">Graph</button>`);
+                        }
+                        else
+                            columnsNames.push(`<button type="button" class="btn btn-primary btn-sm" id="edit" onclick="editPerson('${text.id}','${text.name}','${text.age}','${text.type}');">Edit</button> <br><button type="button" class="btn btn-danger btn-sm" id="delete" onclick="deletePerson('${text.id}');">Delete</button>`);
 
                         tableColumnNames.push(columnsNames);
 

@@ -8,6 +8,12 @@ using System.Text;
 
 namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
 {
+    ///<summary>
+    ///Clase PersonRepositorio
+    ///</summary>
+    ///<remarks>
+    ///Se usa para manejar la logica CRUD del objeto Person
+    ///</remarks>
     public class PersonRepositorio : IPersonRepositorio
     {
 

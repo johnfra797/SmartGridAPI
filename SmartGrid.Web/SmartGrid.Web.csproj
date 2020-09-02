@@ -4268,6 +4268,7 @@
     <Content Include="vendors\jquery.sparkline\sparkline.jquery.json" />
     <Content Include="Views\PersonType\Index.cshtml" />
     <Content Include="Views\PersonType\ModalPersonType.cshtml" />
+    <Content Include="Views\Person\ModalGraph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

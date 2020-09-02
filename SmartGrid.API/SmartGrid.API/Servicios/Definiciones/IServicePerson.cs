@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace SmartGrid.API.Servicios.Definiciones
 {
+    ///<summary>
+    ///Interface IServicePerson
+    ///</summary>
+    ///<remarks>
+    ///Se usa como contrato para implementar los metodos necesarios para interactuar con el objeto Person
+    ///</remarks>
     public interface IServicePerson
     {
         Person Get(int id);
