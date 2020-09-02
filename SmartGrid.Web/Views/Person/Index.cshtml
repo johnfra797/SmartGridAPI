@@ -1,0 +1,368 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #container {
+        height: 400px;
+    }
+
+    .highcharts-figure, .highcharts-data-table table {
+        min-width: 310px;
+        max-width: 800px;
+        margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #EBEBEB;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+</style>
+<div class="container-fluid">
+
+    <!-- Title -->
+    <div class="row heading-bg">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h5 class="txt-dark">Manage Person</h5>
+        </div>
+    </div>
+    <!-- /Title -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Person</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="table-wrap">
+                            <div class="table-responsive">
+                                <button type="button" class="btn btn-primary" onclick="modalPerson();">Add Person</button>
+                                <div id="datable_2_wrapper" class="dataTables_wrapper">
+                                    <table id="person" class="table table-hover table-bordered display mb-30 dataTable" width="100%"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Partial("ModalPerson")
+    <!-- /Row -->
+</div>
+
+<script>
+    let service = 'https://localhost:44361/api/smartgridapi/';
+
+    $(document).ready(function () {
+        loadPersonType();
+        load();
+    });
+
+    function modalPerson() {
+        cleanFields();
+        $("#modalPerson").modal();
+    }
+
+    function editPerson(id, name, age, type) {
+        $("#CodPersonType").val(type);
+        loadPersonType();
+        $("#Age").val(age);
+        $("#name").val(name);
+        $("#CodPerson").val(id);
+        $("#descriptionChart").text(`Graphic about ${name}`);
+        $("#graph").show();
+        loadChart(name);
+        $('#modalPerson').modal();
+    }
+
+    function GenerateData() {
+        let arr = []
+        for (var i = 0; i < 15; i++) {
+            let date = randomDate(new Date(2012, 0, 1), new Date());
+            console.log(date);
+            arr.push([date.toString(), Math.ceil(Math.random() * i)]);
+        }
+        return arr;
+    }
+
+    function randomDate(start, end) {
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+    function loadChart(name) {
+        let data = GenerateData();
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: `Graphic about ${name}`
+            },
+            subtitle: {
+                text: 'Source: Wikipedia'
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Records (millions)'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Records : <b>{point.y:.1f}</b>'
+            },
+            series: [{
+                name: 'Records',
+                data: data,
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        });
+    }
+    function cleanFields() {
+        $("#CodPersonType").val('');
+        $("#Age").val('');
+        $("#name").val('');
+        $("#CodPerson").val('0');
+        $('#modalPerson').modal('hide');
+        $("#graph").hide();
+        load();
+
+    }
+
+    function deletePerson(id) {
+        var serviceURL = `${service}Person/${id}`;
+        $.ajax({
+            type: "DELETE",
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                cleanFields();
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+    function registerPerson() {
+
+        if ($("#CodPerson").val() == '0') {
+            var json = JSON.stringify({ ID: $("#CodPerson").val(), Name: $("#name").val(), Age: $("#Age").val(), Type: $("#CodPersonType").val() });
+
+            var serviceURL = `${service}Person`;
+            $.ajax({
+                type: "POST",
+                data: json,
+                url: serviceURL,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    cleanFields();
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+        }
+        else {
+            updatePerson($("#CodPerson").val());
+        }
+
+    }
+
+    function updatePerson(id) {
+        var json = JSON.stringify({ ID: $("#CodPerson").val(), Name: $("#name").val(), Age: $("#Age").val(), Type: $("#CodPersonType").val() });
+
+        var serviceURL = `${service}Person/${id}`;
+        $.ajax({
+            type: "PUT",
+            data: json,
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                cleanFields();
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+    function load() {
+        var serviceURL = `${service}Person`;
+        $.ajax({
+            type: "GET",
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                var tableColumnNames = [];
+
+                $.each(data, function (val, text) {
+                    var columnsNames = [];
+
+                    columnsNames.push(text.id);
+                    columnsNames.push(text.name);
+                    columnsNames.push(text.age);
+
+                    var promise = new Promise(function (resolve, reject) {
+                        var serviceURL = `${service}PersonType/${text.type}`;
+                        $.ajax({
+                            type: "GET",
+                            url: serviceURL,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                resolve(data);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                reject(Error("It broke"));
+                            }
+                        });
+                    });
+
+                    promise.then(function (result) {
+                        columnsNames.push(result.description);
+                        columnsNames.push(`<button type="button" class="btn btn-primary btn-sm" id="edit" onclick="editPerson('${text.id}','${text.name}','${text.age}','${text.type}');">Edit</button> <br><button type="button" class="btn btn-danger btn-sm" id="delete" onclick="deletePerson('${text.id}');">Delete</button>`);
+
+                        tableColumnNames.push(columnsNames);
+
+                        var table = $('#person').DataTable({
+                            data: tableColumnNames,
+                            bDestroy: true,
+                            columns: [
+                                { title: "#" },
+                                { title: "Name" },
+                                { title: "Age" },
+                                { title: "Type" },
+                                { title: "Actions" }
+                            ]
+                        });
+
+                    }, function (err) {
+                        console.log(err);
+                    });
+
+
+                });
+
+
+                loadPersonType();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+    function companiesChange(value) {
+        $("#CodCompany").val(value.value);
+    }
+
+    function personTypeChange(value) {
+        $("#CodPersonType").val(value.value);
+    }
+
+    function loadPersonType() {
+
+        var serviceURL = `${service}PersonType`;
+        $.ajax({
+            type: "GET",
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#PersonType").empty();
+                let pos = 0;
+                let CodPersonType = $("#CodPersonType").val();
+                $.each(data, function (val, text) {
+                    pos = pos + 1;
+                    if (pos == 1 && CodPersonType == '') {
+                        $("#CodPersonType").val(text.id);
+                        $("#PersonType").append(`<option value=${text.id} selected>${text.description}</option>`);
+                    }
+                    else {
+                        if (CodPersonType == text.id) {
+                            $("#PersonType").append(`<option value=${text.id} selected>${text.description}</option>`);
+                        }
+                        else {
+                            $("#PersonType").append(`<option value=${text.id}>${text.description}</option>`);
+                        }
+                    }
+
+
+                });
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+</script>
+

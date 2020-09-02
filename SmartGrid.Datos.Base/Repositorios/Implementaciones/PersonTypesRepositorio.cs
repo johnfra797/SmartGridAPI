@@ -10,7 +10,7 @@ namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
 {
     public class PersonTypesRepositorio : IPersonTypesRepositorio
     {
-      
+
         public PersonTypesRepositorio()
         {
         }
@@ -18,7 +18,7 @@ namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
         public PersonType Create(PersonType entity)
         {
             var max = BD.BDPersonType.Values.Any() ? BD.BDPersonType.Aggregate((l, r) => l.Key > r.Key ? l : r).Key : 0;
-            int Id = max + 1;
+            int Id = entity.ID == 0 ? max + 1 : entity.ID;
             bool result = BD.BDPersonType.TryAdd(Id, entity);
             entity.ID = Id;
             return entity;
@@ -35,6 +35,13 @@ namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
         {
             var values = new List<PersonType>(BD.BDPersonType.Values);
             return values;
+        }
+
+        public PersonType Get(int id)
+        {
+            PersonType entity;
+            bool returnTrue = BD.BDPersonType.TryGetValue(id, out entity);
+            return entity;
         }
 
         public PersonType Update(int Id, PersonType entity)

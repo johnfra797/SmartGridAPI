@@ -31,6 +31,11 @@ namespace SmartGrid.API.Servicios.Implementaciones
             return _PersonTypesRepositorio.Get();
         }
 
+        public PersonType Get(int id)
+        {
+            return _PersonTypesRepositorio.Get(id);
+        }
+
         public PersonType Update(int Id, PersonType personType)
         {
             return _PersonTypesRepositorio.Update(Id, personType);

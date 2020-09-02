@@ -1,0 +1,175 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+
+    <!-- Title -->
+    <div class="row heading-bg">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h5 class="txt-dark">Manage PersonType</h5>
+        </div>
+    </div>
+    <!-- /Title -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Person Type</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="table-wrap">
+                            <div class="table-responsive">
+                                <button type="button" class="btn btn-primary" onclick="modalPersonType();">Add PersonType</button>
+                                <div id="datable_2_wrapper" class="dataTables_wrapper">
+                                    <table id="personType" class="table table-hover table-bordered display mb-30 dataTable" width="100%"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Partial("ModalPersonType")
+    <!-- /Row -->
+</div>
+
+<script>
+    let service = 'https://localhost:44361/api/smartgridapi/';
+
+    $(document).ready(function () {
+        load();
+    });
+
+    function modalPersonType() {
+        cleanFields();
+        $("#modalPersonType").modal();
+    }
+
+    function editPersonType(id, description) {
+        $("#CodPersonType").val(id);
+        $("#description").val(description);
+        $('#modalPersonType').modal();
+    }
+
+    function cleanFields() {
+        $("#CodPersonType").val('0');
+        $("#description").val('');
+        $('#modalPersonType').modal('hide');
+        load();
+
+    }
+
+    function deletePersonType(id) {
+        var serviceURL =`${service}PersonType/${id}`;
+        $.ajax({
+            type: "DELETE",
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                cleanFields();
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+    
+    function registerPerson() {
+
+        if ($("#CodPersonType").val() == '0') {
+            var json = JSON.stringify({ ID: $("#CodPersonType").val(), Description: $("#description").val()});
+
+            var serviceURL = `${service}PersonType`;
+            $.ajax({
+                type: "POST",
+                data: json,
+                url: serviceURL,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    cleanFields();
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+        }
+        else {
+            updatePerson($("#CodPersonType").val());
+        }
+
+    }
+
+    function updatePerson(id) {
+        var json = JSON.stringify({ ID: $("#CodPersonType").val(), Description: $("#description").val()});
+
+        var serviceURL =`${service}PersonType/${id}`;
+        $.ajax({
+            type: "PUT",
+            data: json,
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                cleanFields();
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+    function load() {
+        var serviceURL = `${service}PersonType`;
+        $.ajax({
+            type: "GET",
+            url: serviceURL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                var tableColumnNames = [];
+
+                $.each(data, function (val, text) {
+                    var columnsNames = [];
+
+                    columnsNames.push(text.id);
+                    columnsNames.push(text.description);
+
+                    columnsNames.push(`<button type="button" class="btn btn-primary btn-sm" id="edit" onclick="editPersonType('${text.id}','${text.description}');">Edit</button> <br><button type="button" class="btn btn-danger btn-sm" id="delete" onclick="deletePersonType('${text.id}');">Delete</button>`);
+
+                    tableColumnNames.push(columnsNames);
+                });
+
+                var table = $('#personType').DataTable({
+                    data: tableColumnNames,
+                    bDestroy: true,
+                    columns: [
+                        { title: "#" },
+                        { title: "Description" },
+                        { title: "Actions" }
+                    ]
+                });
+
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+</script>
+

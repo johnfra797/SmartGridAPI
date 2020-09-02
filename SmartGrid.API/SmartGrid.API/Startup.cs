@@ -62,6 +62,8 @@ namespace SmartGrid.API
 
             app.UseAuthorization();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

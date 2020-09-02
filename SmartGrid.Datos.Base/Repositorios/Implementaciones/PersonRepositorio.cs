@@ -18,7 +18,7 @@ namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
         public Person Create(Person entity)
         {
             var max = BD.BDPerson.Values.Any() ? BD.BDPerson.Aggregate((l, r) => l.Key > r.Key ? l : r).Key : 0;
-            int Id = max + 1;
+            int Id = entity.ID == 0 ? max + 1 : entity.ID;
             entity.ID = Id;
             bool result = BD.BDPerson.TryAdd(Id, entity);
             return entity;
@@ -35,6 +35,13 @@ namespace SmartGrid.Datos.Base.Repositorios.Implementaciones
         {
             var values = new List<Person>(BD.BDPerson.Values);
             return values;
+        }
+
+        public Person Get(int id)
+        {
+            Person entity;
+            bool returnTrue = BD.BDPerson.TryGetValue(id, out entity);
+            return entity;
         }
 
         public Person Update(int Id, Person entity)

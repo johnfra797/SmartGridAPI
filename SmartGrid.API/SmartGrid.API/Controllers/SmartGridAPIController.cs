@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using SmartGrid.API.Servicios.Definiciones;
 using SmartGrid.Datos.DTO;
 
@@ -34,15 +36,25 @@ namespace SmartGrid.API.Controllers
             return Ok(_servicePerson.Get());
         }
 
-        [HttpPost("Person")]
-        public IActionResult CreatePerson([FromBody] Person person)
+        [HttpGet("Person/{id}")]
+        public IActionResult GetPersons(int id)
         {
+            return Ok(_servicePerson.Get(id));
+        }
+
+        [HttpPost("Person")]
+        public IActionResult CreatePerson([FromBody] JsonElement body)
+        {
+            string json = System.Text.Json.JsonSerializer.Serialize(body);
+            Person person = JsonConvert.DeserializeObject<Person>(json);
             return Ok(_servicePerson.Create(person));
         }
 
         [HttpPut("Person/{id}")]
-        public IActionResult UpdatePerson(int id, [FromBody] Person person)
+        public IActionResult UpdatePerson(int id, [FromBody] JsonElement body)
         {
+            string json = System.Text.Json.JsonSerializer.Serialize(body);
+            Person person = JsonConvert.DeserializeObject<Person>(json);
 
             return Ok(_servicePerson.Update(id, person));
         }
@@ -58,16 +70,24 @@ namespace SmartGrid.API.Controllers
         {
             return Ok(_servicePersonType.Get());
         }
-
-        [HttpPost("PersonType")]
-        public IActionResult CreatePersonType([FromBody] PersonType personType)
+        [HttpGet("PersonType/{id}")]
+        public IActionResult GetPersonTypes(int id)
         {
+            return Ok(_servicePersonType.Get(id));
+        }
+        [HttpPost("PersonType")]
+        public IActionResult CreatePersonType([FromBody] JsonElement body)
+        {
+            string json = System.Text.Json.JsonSerializer.Serialize(body);
+            PersonType personType = JsonConvert.DeserializeObject<PersonType>(json);
             return Ok(_servicePersonType.Create(personType));
         }
 
         [HttpPut("PersonType/{id}")]
-        public IActionResult UpdatePersonType(int id, [FromBody] PersonType personType)
+        public IActionResult UpdatePersonType(int id, [FromBody] JsonElement body)
         {
+            string json = System.Text.Json.JsonSerializer.Serialize(body);
+            PersonType personType = JsonConvert.DeserializeObject<PersonType>(json);
 
             return Ok(_servicePersonType.Update(id, personType));
         }

@@ -88,9 +88,9 @@ C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\obj\Debug\netcoreapp3.1\SmartGrid.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\obj\Debug\netcoreapp3.1\SmartGrid.API.csproj.CopyComplete
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\SmartGrid.Datos.Base.dll
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\SmartGrid.Datos.dll
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\SmartGrid.Datos.Base.pdb
 C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\bin\Debug\netcoreapp3.1\SmartGrid.Datos.pdb
+C:\Users\Arduino\Desktop\Repositorios\SmartGrid\SmartGrid.API\SmartGrid.API\obj\Debug\netcoreapp3.1\SmartGrid.API.MvcApplicationPartsAssemblyInfo.cache

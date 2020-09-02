@@ -8,6 +8,7 @@ namespace SmartGrid.API.Servicios.Definiciones
 {
     public interface IServicePersonType
     {
+        PersonType Get(int id);
         List<PersonType> Get();
         bool Delete(int id);
         PersonType Update(int Id, PersonType personType);
